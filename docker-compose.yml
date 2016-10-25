@@ -1,0 +1,133 @@
+namenode:
+  image: bde2020/hadoop-namenode:1.0.0
+  hostname: namenode
+  container_name: namenode
+  domainname: proteus
+  net: proteus
+  volumes:
+    - ./data/namenode:/hadoop/dfs/name
+    - ./proteus-data:/proteus-data
+  environment:
+    - CLUSTER_NAME=test
+  env_file:
+    - ./environment/hadoop.env
+  ports:
+    - "50030"
+
+resourcemanager:
+  image: bde2020/hadoop-resourcemanager:1.0.0
+  hostname: resourcemanager
+  container_name: resourcemanager
+  domainname: proteus
+  net: proteus
+  env_file:
+    - ./environment/hadoop.env
+  ports:
+    - "8021"
+
+historyserver:
+  image: bde2020/hadoop-historyserver:1.0.0
+  hostname: historyserver
+  container_name: historyserver
+  domainname: proteus
+  net: proteus
+  volumes:
+    - ./data/historyserver:/hadoop/yarn/timeline
+  env_file:
+    - ./environment/hadoop.env
+
+nodemanager1:
+  image: bde2020/hadoop-nodemanager:1.0.0
+  hostname: nodemanager1
+  container_name: nodemanager1
+  domainname: proteus
+  net: proteus
+  env_file:
+    - ./environment/hadoop.env
+
+nodemanager2:
+  image: bde2020/hadoop-nodemanager:1.0.0
+  hostname: nodemanager2
+  container_name: nodemanager2
+  domainname: proteus
+  net: proteus
+  env_file:
+    - ./environment/hadoop.env
+
+nodemanager3:
+  image: bde2020/hadoop-nodemanager:1.0.0
+  hostname: nodemanager3
+  container_name: nodemanager3
+  domainname: proteus
+  net: proteus
+  env_file:
+    - ./environment/hadoop.env
+
+
+datanode1:
+  image: bde2020/hadoop-datanode:1.0.0
+  hostname: datanode1
+  container_name: datanode1
+  domainname: proteus
+  net: proteus
+  volumes:
+    - ./data/datanode1:/hadoop/dfs/data
+  env_file:
+    - ./environment/hadoop.env
+
+datanode2:
+  image: bde2020/hadoop-datanode:1.0.0
+  hostname: datanode2
+  container_name: datanode2
+  domainname: proteus
+  net: proteus
+  volumes:
+    - ./data/datanode2:/hadoop/dfs/data
+  env_file:
+    - ./environment/hadoop.env
+
+datanode3:
+  image: bde2020/hadoop-datanode:1.0.0
+  hostname: datanode3
+  container_name: datanode3
+  domainname: proteus
+  net: proteus
+  volumes:
+    - ./data/datanode3:/hadoop/dfs/data
+  env_file:
+    - ./environment/hadoop.env
+
+hive-server:
+    build: ./hive
+    container_name: hive-server
+    domainname: proteus
+    net: proteus
+    volumes:
+      - ./proteus-data:/proteus-data
+    env_file:
+      - ./environment/hadoop.env
+    environment:
+      - "HIVE_CORE_CONF_javax_jdo_option_ConnectionURL=jdbc:postgresql://hive-metastore/metastore"
+    links:
+      - "hive-metastore"
+    ports:
+      - "10000:10000"
+
+hive-metastore:
+    build: ./hive
+    domainname: proteus
+    net: proteus
+    container_name: hive-metastore
+    env_file:
+      - ./environment/hadoop.env
+    command: /opt/hive/bin/hive --service metastore
+    links:
+      - "namenode"
+
+hive-metastore-postgresql:
+    container_name: hive-metastore-postgresql
+    domainname: proteus
+    net: proteus
+    image: bde2020/hive-metastore-postgresql:2.1.0
+    links:
+      - "namenode"
