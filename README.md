@@ -52,26 +52,26 @@ SELECT * FROM hsm_external LIMIT 3;
 Proteus Environment menu
 ---------
 
-1. Install Proteus Environment
+1. Install Proteus Environment:
 
-This option will pull all the images and setup all the containers in the correct order from scratch.
+⋅⋅⋅This option will pull all the images and setup all the containers in the correct order from scratch.
 
-2. Check status
+2. Check status:
 
-This option will print the state of all the containers. The same as dockers ps -a
+⋅⋅⋅This option will print the state of all the containers. The same as dockers ps -a
 
 
-3. Stop all continers
+3. Stop all continers:
 
-Stop and remove all the containers. Free the memory.
+⋅⋅⋅Stop and remove all the containers. Free the memory.
 
-4. Remove all containers
+4. Remove all containers:
 
-Stop and delete all the containers.
+⋅⋅⋅Stop and delete all the containers.
 
-5. Unistall Proteus Environment
+5. Unistall Proteus Environment:
 
-This option will delete all the containers and images used by Docker to running-up the Proteus Environment.
+⋅⋅⋅This option will delete all the containers and images used by Docker to running-up the Proteus Environment.
 
 Architecture
 -----
