@@ -1,7 +1,7 @@
 FROM bde2020/hadoop-base:1.0.0-hadoop2.7.1
 
-MAINTAINER Yiannis Mouchakis <gmouchakis@iit.demokritos.gr>
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
+MAINTAINER David Piris <david.piris@treelogic.com>
+MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 
 ENV HIVE_VERSION 2.1.0
 
