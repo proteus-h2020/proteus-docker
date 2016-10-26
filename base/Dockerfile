@@ -1,5 +1,6 @@
 FROM debian:7
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
+MAINTAINER David Piris <david.piris@treelogic.com> 
+MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-7-jdk
 ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/

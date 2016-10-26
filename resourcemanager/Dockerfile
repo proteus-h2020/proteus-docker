@@ -1,5 +1,6 @@
 FROM bde2020/hadoop-base:1.0.0
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
+MAINTAINER David Piris <david.piris@treelogic.com>
+MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 
 ADD conf/yarn-site.xml /etc/hadoop/
 

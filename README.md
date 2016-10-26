@@ -106,4 +106,9 @@ Future Work
 * Integrate Apache Kafka.
 * Integrate Apache Tez.
 
-
+Note
+---------------
+This environmente is based on GitHub proyects:
+ 
+* Hive [big-data-europe/docker-hive](https://github.com/big-data-europe/docker-hive)
+* Hadoop [big-data-europe/docker-hadoop](https://github.com/big-data-europe/docker-hadoop)
