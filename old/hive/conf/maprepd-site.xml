@@ -1,0 +1,8 @@
+
+<configuration>
+
+<property><name>mapreduce.framework.name</name><value>yarn</value></property>
+<property><name>mapred.job.tracker</name><value>http://resourcemanager:8032</value></property>
+<property><name>hive.exec.mode.local.auto</name><value>false</value></property>
+
+</configuration>

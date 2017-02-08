@@ -1,26 +1,29 @@
-FROM bde2020/hadoop-base:1.0.0
-MAINTAINER David Piris <david.piris@treelogic.com>
+FROM treelogic:ssh
+
 MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 
-ENV HDFS_CONF_dfs_namenode_name_dir=file:///hadoop/dfs/name
-RUN mkdir -p /hadoop/dfs/name
-VOLUME /hadoop/dfs/name
+RUN echo "root:root" | chpasswd
+USER root
 
-ADD run.sh /run.sh
-RUN chmod a+x /run.sh
+# Java 8
 
-RUN hdfs dfs -mkdir -p /user/proteus-data
-RUN hdfs dfs -mkdir -p /user/proteus-user
-RUN hdfs dfs -mkdir -p /user/proteus-copy
+RUN apk update
+RUN apk add --update --no-cache openjdk8 perl
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/
+RUN echo 'alias jps='/usr/lib/jvm/java-1.8-openjdk/bin/jps'' >> ~/.bashrc
 
-RUN hdfs dfs -put /hadoop-data/proteus-example.csv /user/proteus/proteus-example.csv
-RUN hdfs dfs -put /hadoop-data/proteus-example2.csv /user/proteus/proteus-exapmle2.csv
-RUN hdfs dfs -put /hadoop-data/proteus-example3.csv /user/proteus/proteus-example3.csv
+# Hadoop
 
-#Abrimos puertos
-EXPOSE 8088
-EXPOSE 8080
-EXPOSE 50030
-EXPOSE 54311
+RUN wget http://apache.uvigo.es/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz && tar -zxvf hadoop-2.7.3.tar.gz && rm -r hadoop-2.7.3.tar.gz && /hadoop-2.7.3/bin/hdfs namenode -format proteus-cluster
 
-CMD ["/run.sh"]
+# Supervisor
+
+COPY supervisor-namenode.ini /etc/supervisor.d/
+COPY hadoop-env.sh /hadoop-2.7.3/etc/hadoop/hadoop-env.sh 
+
+# Entrypoint
+
+COPY entrypoint.sh entrypoint.sh
+RUN chmod a+x entrypoint.sh
+
+CMD ["/entrypoint.sh"]
