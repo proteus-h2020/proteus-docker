@@ -14,34 +14,24 @@ if [ "$(sudo docker network inspect $NETWORK -d --format '{{ .Name }}')" == "$NE
 else echo "Proteus Network don´t exist. Creating...  "$(sudo docker network create proteus)
 fi
 
+## Build Images
+echo "Build"
+
+sudo docker build -t treelogic:base ./base/.
+sudo docker build -t treelogic:ssh ./ssh/.
+sudo docker build -t treelogic:namenode ./namenode/.
+sudo docker build -t treelogic:resourcemanager ./resourcemanager/.
+sudo docker build -t treelogic:nodemanager ./nodemanager/.
+sudo docker build -t treelogic:datanode ./datanode/.
+sudo docker build -t treelogic:zookeeper ./zookeeper/.
+sudo docker build -t treelogic:kafka ./kafka/.
+
+
+echo "Docker Compose"
+
 ### Build
-sudo docker-compose build
 
-
-### Apache Hadoop
-
-sudo docker-compose up -d namenode
-sleep 1m
-### Leave Safe Mode
-sudo ./scripts/leave-safemode.sh
-
-sudo docker-compose up -d datanode1
+sudo docker-compose scale nodemanager=3
+sudo docker-compose scale datanode=3
 sudo docker-compose up -d resourcemanager
-sudo docker-compose up -d datanode2
-sudo docker-compose up -d datanode3
-sudo docker-compose up -d nodemanager1
-sudo docker-compose up -d nodemanager2
-sudo docker-compose up -d nodemanager3
-sudo docker-compose up -d historyserver
-
-### Apache Hive
-sudo docker-compose up -d hive-metastore-postgresql
-sleep 1m
-sudo docker-compose up -d hive-metastore
-sudo docker-compose up -d hive-server
-
-### Upload files on HDFS
-sudo ./scripts/hdfs.sh
-
-### Load data on  Apache Hive
-sudo ./scripts/setup-hive.sh
+sudo docker-compose up -d namenode
