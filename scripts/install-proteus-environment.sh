@@ -35,3 +35,5 @@ sudo docker-compose scale nodemanager=3
 sudo docker-compose scale datanode=3
 sudo docker-compose up -d resourcemanager
 sudo docker-compose up -d namenode
+sudo docker-compose up -d zookeeper
+sudo docker-compose up -d kafka
