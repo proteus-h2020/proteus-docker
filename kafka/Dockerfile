@@ -23,19 +23,23 @@ RUN apk update && apk add --update --no-cache openjdk8 perl
 
 RUN mkdir -p opt/kafka && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ 
 
-COPY server.properties /kafka_2.11-0.10.0.0/config/server.properties
+COPY server.properties /kafka_$SCALA_VERSION-$KAFKA_VERSION/config/server.properties
 
 ## Alias
 
-RUN echo 'alias jps='/usr/lib/jvm/java-1.8-openjdk/bin/jps'' >> ~/.bashrc
+RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc
 
 ## Supervisor
 
 COPY supervisor-kafka.ini /etc/supervisor.d/
 
-# ENTRYPOINT
+## Entrypoint
 
 COPY entrypoint.sh entrypoint.sh
 RUN chmod a+x entrypoint.sh
+
+## Workdir
+
+WORKDIR /opt
 
 CMD ["/entrypoint.sh"] 

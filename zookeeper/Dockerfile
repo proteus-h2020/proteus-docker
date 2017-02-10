@@ -2,37 +2,38 @@ FROM treelogic:ssh
 
 MAINTAINER <pablo.mesa@treelogic.com>
 
-# JAVA 8
+## Environment
 
-RUN apk update
-RUN apk add --update --no-cache openjdk8 perl
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/
-RUN echo 'alias jps='/usr/lib/jvm/java-1.8-openjdk/bin/jps'' >> ~/.bashrc
+ENV JAVA_VERSION=1.8
+ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk
+ENV ZOOKEEPER_VERSION=3.4.9
+ENV ZOOKEEPER_HOME=/opt/zookeeper
+
+## Install
+
+# Java 8
+
+RUN apk update && apk add --update --no-cache openjdk8 perl
 
 # Supervisor
 
 COPY supervisor-zookeeper.ini /etc/supervisor.d/
 
-# ZOOKEEPER
+# Zookeeper
 
-ENV ZOOKEEPER_VERSION=3.4.9
+RUN mkdir -p opt/zookeeper && wget -q http://mirror.vorboss.net/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz && tar -zxf zookeeper-$ZOOKEEPER_VERSION.tar.gz --strip 1 -C /opt/zookeepert && mv /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && sedd  -i "s|/tmp/zookeeper|$ZOOKEEPER_HOME/data|g" $ZOOKEEPER_HOME/conf/zoo.cfg; mkdir $ZOOKEEPER_HOME/data
 
-RUN wget -q http://mirror.vorboss.net/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz
-
-#Install
-RUN mkdir opt && tar -xzf zookeeper-${ZOOKEEPER_VERSION}.tar.gz -C /opt
-
-#Configure
-RUN mv /opt/zookeeper-${ZOOKEEPER_VERSION}/conf/zoo_sample.cfg /opt/zookeeper-${ZOOKEEPER_VERSION}/conf/zoo.cfg
-
-ENV ZK_HOME /opt/zookeeper-${ZOOKEEPER_VERSION}
-RUN sed  -i "s|/tmp/zookeeper|$ZK_HOME/data|g" $ZK_HOME/conf/zoo.cfg; mkdir $ZK_HOME/data
+# Configuration
 
 COPY start-zk.sh /usr/bin/start-zk.sh 
 RUN chmod a+x /usr/bin/start-zk.sh
+
+## Alias
+
+RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc
+
+## Ports
+
 EXPOSE 2181 2888 3888
-
-RUN find / -name "start-zk.sh"
-
 
 CMD ["/usr/bin/start-zk.sh"]
