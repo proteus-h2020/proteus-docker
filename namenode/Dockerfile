@@ -15,16 +15,20 @@ ENV HADOOP_HOME=/opt/hadoop/bin
 ## Install
 # Java 8
 
-RUN apk update && apk add --update --no-cache openjdk8 perl && echo 'alias jps='$JAVA_HOME/bin/jps'' >> ~/.bashrc
+RUN apk update && apk add --update --no-cache openjdk8 perl
 
 # Hadoop
 
-RUN mkdir -p opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz --strip 1 -C /opt/hadoop && rm -r hadoop-$HADOOP_VERSION.tar.gz && echo 'alias hdfs='$HADOOP_HOME/hdfs'' >> ~/.bashrc && $HADOOP_HOME/hdfs namenode -format proteus-cluster 
+RUN mkdir -p opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz --strip 1 -C /opt/hadoop && rm -r hadoop-$HADOOP_VERSION.tar.gz && $HADOOP_HOME/hdfs namenode -format proteus-cluster 
 
 # Supervisor
 
 COPY supervisor-namenode.ini /etc/supervisor.d/
 COPY hadoop-env.sh /hadoop-$HADOOP_VERSION/etc/hadoop/hadoop-env.sh 
+
+## Alias
+
+RUN echo 'alias jps='/usr/lib/jvm-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc && echo 'alias hdfs='$HADOOP_HOME/hdfs'' >> ~/.bashrc
 
 # Entrypoint
 
