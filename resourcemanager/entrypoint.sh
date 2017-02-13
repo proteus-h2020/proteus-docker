@@ -26,7 +26,7 @@ function configure() {
         var="${envPrefix}_${c}"
         value=${!var}
         echo " - Setting $name=$value"
-        addProperty hadoop-2.7.3/etc/hadoop/$module-site.xml $name "$value"
+        addProperty /opt/hadoop/etc/hadoop/$module-site.xml $name "$value"
     done
 }
 

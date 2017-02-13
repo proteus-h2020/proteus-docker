@@ -24,7 +24,7 @@ RUN mkdir -p /opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HA
 # Supervisor
 
 COPY supervisor-namenode.ini /etc/supervisor.d/
-COPY hadoop-env.sh /hadoop-$HADOOP_VERSION/etc/hadoop/hadoop-env.sh 
+COPY hadoop-env.sh /opt/hadoop/etc/hadoop/hadoop-env.sh 
 
 ## Alias
 
@@ -32,11 +32,11 @@ RUN echo 'alias jps='/usr/lib/jvm-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc &
 
 # Entrypoint
 
-COPY entrypoint.sh entrypoint.sh
-RUN chmod a+x entrypoint.sh
+COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod a+x /opt/entrypoint.sh
 
 ## Workdir
 
 WORKDIR /opt/hadoop/
 
-CMD ["/entrypoint.sh"]
+CMD ["/opt/entrypoint.sh"]
