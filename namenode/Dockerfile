@@ -37,6 +37,6 @@ RUN chmod a+x /opt/entrypoint.sh
 
 ## Workdir
 
-WORKDIR /opt/hadoop/
+WORKDIR /opt/
 
 CMD ["/opt/entrypoint.sh"]

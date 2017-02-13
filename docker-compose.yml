@@ -9,7 +9,7 @@ services:
     networks:
       - proteus
     volumes:
-      -  /home/pablo.mesa/Escritorio/ProteusDocker/DataSet/coiltimeseries/:/proteus-coiltimeseries/
+      -  ./proteus-data/:/opt/proteus-data/
     env_file:
       - ./environment/proteus.env
       - ./namenode/namenode-conf/namenode.env
