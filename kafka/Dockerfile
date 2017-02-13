@@ -21,7 +21,7 @@ RUN apk update && apk add --update --no-cache openjdk8 perl
 
 # Kafka
 
-RUN mkdir -p opt/kafka && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ 
+RUN mkdir -p /opt/kafka && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ 
 
 COPY server.properties /kafka_$SCALA_VERSION-$KAFKA_VERSION/config/server.properties
 

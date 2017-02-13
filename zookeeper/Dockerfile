@@ -21,12 +21,12 @@ COPY supervisor-zookeeper.ini /etc/supervisor.d/
 
 # Zookeeper
 
-RUN mkdir -p opt/zookeeper && wget -q http://mirror.vorboss.net/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz && tar -zxf zookeeper-$ZOOKEEPER_VERSION.tar.gz --strip 1 -C /opt/zookeepert && mv /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && sedd  -i "s|/tmp/zookeeper|$ZOOKEEPER_HOME/data|g" $ZOOKEEPER_HOME/conf/zoo.cfg; mkdir $ZOOKEEPER_HOME/data
+RUN mkdir -p /opt/zookeeper && wget -q http://mirror.vorboss.net/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz && tar -zxf zookeeper-$ZOOKEEPER_VERSION.tar.gz --strip 1 -C /opt/zookeeper && mv /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg && sed  -i "s|/tmp/zookeeper|$ZOOKEEPER_HOME/data|g" $ZOOKEEPER_HOME/conf/zoo.cfg; mkdir $ZOOKEEPER_HOME/data
 
 # Configuration
 
-COPY start-zk.sh /usr/bin/start-zk.sh 
-RUN chmod a+x /usr/bin/start-zk.sh
+COPY start-zk.sh /opt/zookeeper/start-zk.sh 
+RUN chmod a+x /opt/zookeeper/start-zk.sh
 
 ## Alias
 
@@ -36,4 +36,4 @@ RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bas
 
 EXPOSE 2181 2888 3888
 
-CMD ["/usr/bin/start-zk.sh"]
+CMD ["/usr/bin/supervisord"]

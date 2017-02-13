@@ -9,28 +9,35 @@ USER root
 
 ENV JAVA_VERSION=1.8
 ENV HADOOP_VERSION=2.7.3
+ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk/
+
 
 # Java 8
 
-RUN apk update
-RUN apk add --update --no-cache openjdk8 perl
-ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk/
-RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc
+RUN apk update && apk add --update --no-cache openjdk8 perl
 
 # Hadoop
 
-RUN wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz && rm -r hadoop-$HADOOP_VERSION.tar.gz && /hadoop-$HADOOP_VERSION/bin/hdfs namenode -format proteus-cluster
+RUN mkdir -p /opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz --strip 1 -C /opt/hadoop && rm -r hadoop-$HADOOP_VERSION.tar.gz && /opt/hadoop/bin/hdfs namenode -format proteus-cluster
 
-RUN cp /hadoop-$HADOOP_VERSION/etc/hadoop/mapred-site.xml.template /hadoop-$HADOOP_VERSION/etc/hadoop/mapred-site.xml
+RUN cp /opt/hadoop/etc/hadoop/mapred-site.xml.template /opt/hadoop/etc/hadoop/mapred-site.xml
 
 # Supervisor
 
 COPY supervisor-nodemanager.ini /etc/supervisor.d/
-COPY hadoop-env.sh /hadoop-2.7.3/etc/hadoop/hadoop-env.sh 
+COPY hadoop-env.sh /opt/hadoop/etc/hadoop/hadoop-env.sh 
+
+## Alias
+
+RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSIOn-openjdk/bin/jps'' >> ~/.bashrc
 
 # Entrypoint
 
 COPY entrypoint.sh entrypoint.sh
 RUN chmod a+x entrypoint.sh
+
+## Workdir
+
+WORKDIR /opt/
 
 CMD ["/entrypoint.sh"]

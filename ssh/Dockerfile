@@ -5,8 +5,9 @@ MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 RUN echo "root:root" | chpasswd
 USER root
 
-RUN apk update
-RUN apk add --update --no-cache openssh
+## Install
+
+RUN apk update && apk add --update --no-cache openssh
 
 COPY entrypoint.sh entrypoint.sh
 RUN chmod a+x entrypoint.sh

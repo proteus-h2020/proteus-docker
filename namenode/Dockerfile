@@ -19,7 +19,7 @@ RUN apk update && apk add --update --no-cache openjdk8 perl
 
 # Hadoop
 
-RUN mkdir -p opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz --strip 1 -C /opt/hadoop && rm -r hadoop-$HADOOP_VERSION.tar.gz && $HADOOP_HOME/hdfs namenode -format proteus-cluster 
+RUN mkdir -p /opt/hadoop && wget http://apache.uvigo.es/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && tar -zxvf hadoop-$HADOOP_VERSION.tar.gz --strip 1 -C /opt/hadoop && rm -r hadoop-$HADOOP_VERSION.tar.gz && $HADOOP_HOME/hdfs namenode -format proteus-cluster 
 
 # Supervisor
 
@@ -34,5 +34,9 @@ RUN echo 'alias jps='/usr/lib/jvm-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc &
 
 COPY entrypoint.sh entrypoint.sh
 RUN chmod a+x entrypoint.sh
+
+## Workdir
+
+WORKDIR /opt/
 
 CMD ["/entrypoint.sh"]
