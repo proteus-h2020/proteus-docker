@@ -30,19 +30,13 @@ function configure() {
     done
 }
 
-configure hadoop-2.7.3/etc/hadoop/core-site.xml core CORE_CONF
-configure hadoop-2.7.3/etc/hadoop/hdfs-site.xml hdfs HDFS_CONF
-configure hadoop-2.7.3/etc/hadoop/yarn-site.xml yarn YARN_CONF
-configure hadoop-2.7.3/etc/hadoop/httpfs-site.xml httpfs HTTPFS_CONF
-configure hadoop-2.7.3/etc/hadoop/kms-site.xml kms KMS_CONF
-configure hadoop-2.7.3/etc/hadoop/mapred-site.xml mapred MAPRED_CONF
-
-pwd
-pwd
-pwd
-pwd
-pwd
+configure /opt/hadoop/etc/hadoop/core-site.xml core CORE_CONF
+configure /opt/hadoop/etc/hadoop/hdfs-site.xml hdfs HDFS_CONF
+configure /opt/hadoop/etc/hadoop/yarn-site.xml yarn YARN_CONF
+configure /opt/hadoop/etc/hadoop/httpfs-site.xml httpfs HTTPFS_CONF
+configure /opt/hadoop/etc/hadoop/kms-site.xml kms KMS_CONF
+configure /opt/hadoop/etc/hadoop/mapred-site.xml mapred MAPRED_CONF
 
 /usr/bin/supervisord
 
-/hadoop-2.7.3/sbin/start-dfs.h
+
