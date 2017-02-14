@@ -60,7 +60,6 @@ Docker Proteus Environment have one container based on the lightweight image of 
   * WebUI http://namenode:50070
 * Resource Manager
   * WebUI http://resourcemanager:8088
-* History Server
 * Data Node 1
 * Data Node 2
 * Data Node 3
@@ -87,6 +86,7 @@ Future Work
 -----------
 
 * Integrate Apache Flink
+* Integrate Apache Hive
 
 Note
 ---------------
