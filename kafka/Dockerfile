@@ -23,7 +23,7 @@ RUN apk update && apk add --update --no-cache openjdk8 perl
 
 RUN mkdir -p /opt/kafka && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ 
 
-COPY server.properties /kafka_$SCALA_VERSION-$KAFKA_VERSION/config/server.properties
+COPY server.properties /opt/kafka/config/server.properties
 
 ## Alias
 
@@ -35,11 +35,11 @@ COPY supervisor-kafka.ini /etc/supervisor.d/
 
 ## Entrypoint
 
-COPY entrypoint.sh entrypoint.sh
-RUN chmod a+x entrypoint.sh
+COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod a+x /opt/entrypoint.sh
 
 ## Workdir
 
 WORKDIR /opt
 
-CMD ["/entrypoint.sh"] 
+CMD ["/opt/entrypoint.sh"] 
