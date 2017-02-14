@@ -33,11 +33,11 @@ RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSIOn-openjdk/bin/jps'' >> ~/.bas
 
 # Entrypoint
 
-COPY entrypoint.sh entrypoint.sh
-RUN chmod a+x entrypoint.sh
+COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod a+x /opt/entrypoint.sh
 
 ## Workdir
 
 WORKDIR /opt/
 
-CMD ["/entrypoint.sh"]
+CMD ["/opt/entrypoint.sh"]
