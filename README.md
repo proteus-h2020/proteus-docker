@@ -56,16 +56,6 @@ Architecture
 -----
 Docker Proteus Environment have one container based on the lightweight image of Alpine Linux for each service:
 
-* Name Node
-  * WebUI http://namenode:50070
-* Resource Manager
-  * WebUI http://resourcemanager:8088
-* Data Node 1
-* Data Node 2
-* Data Node 3
-* Node Manager 1
-* Node Manager 2
-* Node Manager 3
 * Kafka
 * Zookeeper
 
@@ -85,6 +75,7 @@ You may need to restart the container with the docker commands.
 Future Work
 -----------
 
+* Integrate Apache Hadoop 
 * Integrate Apache Flink
 * Integrate Apache Hive
 
