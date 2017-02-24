@@ -1,63 +1,6 @@
 version: '2'
 
 services:
-  namenode:
-    image: treelogic:namenode
-    hostname: namenode
-    container_name: namenode
-    domainname: proteus
-    networks:
-      - proteus
-    volumes:
-      -  ./proteus-data/:/opt/proteus-data/
-    env_file:
-      - ./namenode/namenode-conf/namenode.env
-
-  nodemanager:
-    image: treelogic:nodemanager
-    hostname: nodemanager
-    domainname: proteus
-    networks: 
-      - proteus
-    env_file:
-      - ./nodemanager/nodemanager-conf/nodemanager.env
- 
-  resourcemanager:
-    image: treelogic:resourcemanager
-    hostname: resourcemanager
-    container_name: resourcemanager
-    domainname: proteus
-    networks: 
-      - proteus
-    env_file:
-      - ./resourcemanager/resourcemanager-conf/resourcemanager.env
-
-  datanode:
-    image: treelogic:datanode
-    hostname: datanode
-    domainname: proteus
-    networks:
-      - proteus
-    env_file:
-      - ./datanode/datanode-conf/datanode.env
-
-  logs:
-    image: treelogic:logs
-    hostname: logs
-    container_name: logs
-    domainname: proteus
-    networks:
-      - proteus
-
-  data:
-    image: treelogic:data
-    hostname: data
-    container_name: data
-    domainname: proteus
-    networks: 
-      - proteus
-    volumes:
-      - /home/pablo.mesa/Escritorio/ProteusDocker/DataSet/coiltimeseries/:/proteus-coiltimeseries/
 
   kafka:
     image: treelogic:kafka
@@ -74,30 +17,24 @@ services:
     domainname: proteus
     networks: 
       - proteus
- 
-  flink-jobmanager:
-    image: treelogic:flink
-    container_name: flink-jobmanager
-    domainname: proteus
-    networks: 
-      - proteus
-    expose:
-      - "6123"
-    ports:
-      - "48081:8081"
 
-  flink-taskmanager:
-    image: treelogic:flink
+  logs:
+    image: treelogic:logs
+    hostname: logs
+    container_name: logs
     domainname: proteus
     networks:
       - proteus
-    expose:
-      - "6121"
-      - "6122"
-    depends_on:
-      - flink-jobmanager
-    links:
-      - "flink-jobmanager:flink-jobmanager"
+
+  data:
+    image: treelogic:data
+    hostname: data
+    container_name: data
+    domainname: proteus
+    networks:
+      - proteus
+    volumes:
+      - ./Dataset/:/proteus-coiltimeseries/
 
 networks:
   proteus:
