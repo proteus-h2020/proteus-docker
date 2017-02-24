@@ -7,6 +7,8 @@ services:
     hostname: kafka
     container_name: kafka
     domainname: proteus
+    volumes:
+      - ./Dataset/:/opt/proteus-dataset
     networks: 
       - proteus
 
