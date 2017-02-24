@@ -1,6 +1,0 @@
-[program:namenode]
-command=./hadoop-2.7.3/bin/yarn --config /hadoop-2.7.3/etc/hadoop/ nodemanager
-command=./hadoop-2.7.3/sbin/yarn-daemon.sh start nodemanager
-autostart=true
-autorestart=true
-
