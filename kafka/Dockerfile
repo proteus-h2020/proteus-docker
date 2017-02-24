@@ -28,6 +28,9 @@ COPY server.properties /opt/kafka/config/server.properties
 ## Alias
 
 RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bashrc 
+RUN echo 'proteus(){ /opt/kafka/bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic proteus --from-beginning;}' >> /root/.bashrc 
+RUN source /root/.bashrc
+
 
 ## Function
 

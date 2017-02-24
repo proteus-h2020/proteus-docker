@@ -73,7 +73,7 @@ If all goes propertly, we see a change in the bash, so we can confirm that we ar
 
 
 ```{r, engine='bash', count_lines}
-/opt/kafka/bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic proteus --from-beginning
+proteus
 ```
 
 It is possible that if the containers have been deployed recently, the command take time to work until it reach the stable situation.
