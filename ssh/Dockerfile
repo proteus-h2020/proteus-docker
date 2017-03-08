@@ -8,7 +8,6 @@ RUN apk update && apk add --update --no-cache openssh
 
 ## SSH
 
-USER root
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa && cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 ADD ssh_config /etc/ssh/ssh_config  
 ADD ssh_config /root/.ssh/config
