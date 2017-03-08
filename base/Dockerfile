@@ -2,9 +2,6 @@ FROM alpine:latest
 
 MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
 
-RUN echo "root:root" | chpasswd
-USER root
-
 ## Install
 
 RUN apk update && apk add --update --no-cache bash wget supervisor

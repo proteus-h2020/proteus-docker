@@ -2,9 +2,6 @@ FROM treelogic:ssh
 
 MAINTAINER <pablo.mesa@treelogic.com>
 
-RUN echo "root:root" | chpasswd
-USER root
-
 ## Environment
 
 ENV JAVA_VERSION=1.8
