@@ -1,11 +1,11 @@
-sudo docker rmi $(sudo docker images | grep wurstmeister)
+sudo docker rmi $(sudo docker images | grep kafka)
 
-sudo docker rmi $(sudo docker images | grep bde2020)
+sudo docker rmi $(sudo docker images | grep zookeeper)
 
-sudo docker rmi $(sudo docker images | grep partners)
+sudo docker rmi $(sudo docker images | grep ssh)
 
-sudo docker rmi $(sudo docker images | grep anapsix)
+sudo docker rmi $(sudo docker images | grep base)
 
-sudo docker rmi $(sudo docker images | grep hadoop)
+sudo docker rmi $(sudo docker images | grep alpine)
 
-sudo docker rmi $(sudo docker images | grep tez)
+
