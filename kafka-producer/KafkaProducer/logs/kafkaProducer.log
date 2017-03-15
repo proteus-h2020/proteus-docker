@@ -1,0 +1,115 @@
+2017-01-18 11:19:13 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2017-01-18 11:19:52 DEBUG Shell:321 - Failed to detect a valid hadoop home directory
+java.io.IOException: HADOOP_HOME or hadoop.home.dir are not set.
+	at org.apache.hadoop.util.Shell.checkHadoopHome(Shell.java:303)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:328)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.fs.FileSystem$Cache$Key.<init>(FileSystem.java:2807)
+	at org.apache.hadoop.fs.FileSystem$Cache$Key.<init>(FileSystem.java:2802)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:2668)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:371)
+	at com.treelogic.proteus.kafka.producer.ProteusKafkaProducer.main(ProteusKafkaProducer.java:58)
+2017-01-18 11:19:53 DEBUG Shell:397 - setsid exited with exit code 0
+2017-01-18 11:19:53 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[Rate of successful kerberos logins and latency (milliseconds)])
+2017-01-18 11:19:53 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[Rate of failed kerberos logins and latency (milliseconds)])
+2017-01-18 11:19:53 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[GetGroups])
+2017-01-18 11:19:53 DEBUG MetricsSystemImpl:232 - UgiMetrics, User and group related metrics
+2017-01-18 11:19:53 DEBUG Groups:301 -  Creating new Groups object
+2017-01-18 11:19:53 DEBUG NativeCodeLoader:46 - Trying to load the custom-built native-hadoop library...
+2017-01-18 11:19:53 DEBUG NativeCodeLoader:55 - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2017-01-18 11:19:53 DEBUG NativeCodeLoader:56 - java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2017-01-18 11:19:53 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2017-01-18 11:19:53 DEBUG JniBasedUnixGroupsMappingWithFallback:45 - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2017-01-18 11:19:53 DEBUG Groups:112 - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
+2017-01-18 11:19:53 DEBUG UserGroupInformation:221 - hadoop login
+2017-01-18 11:19:53 DEBUG UserGroupInformation:156 - hadoop login commit
+2017-01-18 11:19:53 DEBUG UserGroupInformation:186 - using local user:UnixPrincipal: ignacio.g.fernandez
+2017-01-18 11:19:53 DEBUG UserGroupInformation:192 - Using user: "UnixPrincipal: ignacio.g.fernandez" with name ignacio.g.fernandez
+2017-01-18 11:19:53 DEBUG UserGroupInformation:202 - User entry: "ignacio.g.fernandez"
+2017-01-18 11:19:53 DEBUG UserGroupInformation:826 - UGI loginUser:ignacio.g.fernandez (auth:SIMPLE)
+2017-01-18 11:19:53 DEBUG BlockReaderLocal:457 - dfs.client.use.legacy.blockreader.local = false
+2017-01-18 11:19:53 DEBUG BlockReaderLocal:460 - dfs.client.read.shortcircuit = false
+2017-01-18 11:19:53 DEBUG BlockReaderLocal:463 - dfs.client.domain.socket.data.traffic = false
+2017-01-18 11:19:53 DEBUG BlockReaderLocal:466 - dfs.domain.socket.path = 
+2017-01-18 11:19:53 DEBUG RetryUtils:75 - multipleLinearRandomRetry = null
+2017-01-18 11:19:53 DEBUG Server:234 - rpcKind=RPC_PROTOCOL_BUFFER, rpcRequestWrapperClass=class org.apache.hadoop.ipc.ProtobufRpcEngine$RpcRequestWrapper, rpcInvoker=org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker@6221a451
+2017-01-18 11:19:53 DEBUG Client:63 - getting client out of cache: org.apache.hadoop.ipc.Client@2ddc9a9f
+2017-01-18 11:19:53 DEBUG Client:434 - The ping interval is 60000 ms.
+2017-01-18 11:19:53 DEBUG Client:704 - Connecting to /192.168.4.245:8020
+2017-01-18 11:19:53 DEBUG Client:974 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez: starting, having connections 1
+2017-01-18 11:19:53 DEBUG Client:1037 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez sending #0
+2017-01-18 11:19:53 DEBUG Client:1094 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez got value #0
+2017-01-18 11:19:53 DEBUG ProtobufRpcEngine:250 - Call: getBlockLocations took 29ms
+2017-01-18 11:19:53 DEBUG DFSClient:308 - newInfo = LocatedBlocks{
+  fileLength=837290546
+  underConstruction=false
+  blocks=[LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346278_2605968; getBlockSize()=134217728; corrupt=false; offset=0; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346281_2605971; getBlockSize()=134217728; corrupt=false; offset=134217728; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346282_2605972; getBlockSize()=134217728; corrupt=false; offset=268435456; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346283_2605973; getBlockSize()=134217728; corrupt=false; offset=402653184; locs=[DatanodeInfoWithStorage[192.168.4.247:50010,DS-0b047700-9be1-4777-9f8a-61ef40c823e0,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346284_2605974; getBlockSize()=134217728; corrupt=false; offset=536870912; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346285_2605975; getBlockSize()=134217728; corrupt=false; offset=671088640; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346286_2605976; getBlockSize()=31984178; corrupt=false; offset=805306368; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}]
+  lastLocatedBlock=LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346286_2605976; getBlockSize()=31984178; corrupt=false; offset=805306368; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}
+  isLastBlockComplete=true}
+2017-01-18 11:19:53 DEBUG DFSClient:1055 - Connecting to datanode 192.168.4.248:50010
+2017-01-18 11:19:53 DEBUG Client:1037 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez sending #1
+2017-01-18 11:19:53 DEBUG Client:1094 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez got value #1
+2017-01-18 11:19:53 DEBUG ProtobufRpcEngine:250 - Call: getServerDefaults took 2ms
+2017-01-18 11:20:03 DEBUG Client:1197 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez: closed
+2017-01-18 11:20:03 DEBUG Client:992 - IPC Client (341138954) connection to /192.168.4.245:8020 from ignacio.g.fernandez: stopped, remaining connections 0
+2017-01-18 11:20:07 DEBUG Client:97 - stopping client from cache: org.apache.hadoop.ipc.Client@2ddc9a9f
+2017-01-18 11:20:07 DEBUG Client:103 - removing client from cache: org.apache.hadoop.ipc.Client@2ddc9a9f
+2017-01-18 11:20:07 DEBUG Client:110 - stopping actual client because no more references remain: org.apache.hadoop.ipc.Client@2ddc9a9f
+2017-01-18 11:20:07 DEBUG Client:1247 - Stopping client
+2017-01-18 11:23:37 DEBUG Shell:321 - Failed to detect a valid hadoop home directory
+java.io.IOException: HADOOP_HOME or hadoop.home.dir are not set.
+	at org.apache.hadoop.util.Shell.checkHadoopHome(Shell.java:303)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:328)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.fs.FileSystem$Cache$Key.<init>(FileSystem.java:2807)
+	at org.apache.hadoop.fs.FileSystem$Cache$Key.<init>(FileSystem.java:2802)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:2668)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:371)
+	at com.treelogic.proteus.kafka.producer.ProteusKafkaProducer.main(ProteusKafkaProducer.java:58)
+2017-01-18 11:23:37 DEBUG Shell:397 - setsid exited with exit code 0
+2017-01-18 11:23:37 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[Rate of successful kerberos logins and latency (milliseconds)])
+2017-01-18 11:23:37 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[Rate of failed kerberos logins and latency (milliseconds)])
+2017-01-18 11:23:37 DEBUG MutableMetricsFactory:42 - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, valueName=Time, value=[GetGroups])
+2017-01-18 11:23:37 DEBUG MetricsSystemImpl:232 - UgiMetrics, User and group related metrics
+2017-01-18 11:23:37 DEBUG Groups:301 -  Creating new Groups object
+2017-01-18 11:23:37 DEBUG NativeCodeLoader:46 - Trying to load the custom-built native-hadoop library...
+2017-01-18 11:23:37 DEBUG NativeCodeLoader:55 - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2017-01-18 11:23:37 DEBUG NativeCodeLoader:56 - java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2017-01-18 11:23:37 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2017-01-18 11:23:37 DEBUG JniBasedUnixGroupsMappingWithFallback:45 - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2017-01-18 11:23:37 DEBUG Groups:112 - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
+2017-01-18 11:23:37 DEBUG UserGroupInformation:221 - hadoop login
+2017-01-18 11:23:37 DEBUG UserGroupInformation:156 - hadoop login commit
+2017-01-18 11:23:37 DEBUG UserGroupInformation:186 - using local user:UnixPrincipal: ignacio.g.fernandez
+2017-01-18 11:23:37 DEBUG UserGroupInformation:192 - Using user: "UnixPrincipal: ignacio.g.fernandez" with name ignacio.g.fernandez
+2017-01-18 11:23:37 DEBUG UserGroupInformation:202 - User entry: "ignacio.g.fernandez"
+2017-01-18 11:23:37 DEBUG UserGroupInformation:826 - UGI loginUser:ignacio.g.fernandez (auth:SIMPLE)
+2017-01-18 11:23:37 DEBUG BlockReaderLocal:457 - dfs.client.use.legacy.blockreader.local = false
+2017-01-18 11:23:37 DEBUG BlockReaderLocal:460 - dfs.client.read.shortcircuit = false
+2017-01-18 11:23:37 DEBUG BlockReaderLocal:463 - dfs.client.domain.socket.data.traffic = false
+2017-01-18 11:23:37 DEBUG BlockReaderLocal:466 - dfs.domain.socket.path = 
+2017-01-18 11:23:37 DEBUG RetryUtils:75 - multipleLinearRandomRetry = null
+2017-01-18 11:23:37 DEBUG Server:234 - rpcKind=RPC_PROTOCOL_BUFFER, rpcRequestWrapperClass=class org.apache.hadoop.ipc.ProtobufRpcEngine$RpcRequestWrapper, rpcInvoker=org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker@3012646b
+2017-01-18 11:23:37 DEBUG Client:63 - getting client out of cache: org.apache.hadoop.ipc.Client@2a7f1f10
+2017-01-18 11:23:37 DEBUG Client:434 - The ping interval is 60000 ms.
+2017-01-18 11:23:37 DEBUG Client:704 - Connecting to /192.168.4.245:8020
+2017-01-18 11:23:37 DEBUG Client:974 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez: starting, having connections 1
+2017-01-18 11:23:37 DEBUG Client:1037 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez sending #0
+2017-01-18 11:23:37 DEBUG Client:1094 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez got value #0
+2017-01-18 11:23:37 DEBUG ProtobufRpcEngine:250 - Call: getBlockLocations took 28ms
+2017-01-18 11:23:37 DEBUG DFSClient:308 - newInfo = LocatedBlocks{
+  fileLength=837290546
+  underConstruction=false
+  blocks=[LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346278_2605968; getBlockSize()=134217728; corrupt=false; offset=0; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346281_2605971; getBlockSize()=134217728; corrupt=false; offset=134217728; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346282_2605972; getBlockSize()=134217728; corrupt=false; offset=268435456; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346283_2605973; getBlockSize()=134217728; corrupt=false; offset=402653184; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.247:50010,DS-0b047700-9be1-4777-9f8a-61ef40c823e0,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346284_2605974; getBlockSize()=134217728; corrupt=false; offset=536870912; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346285_2605975; getBlockSize()=134217728; corrupt=false; offset=671088640; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}, LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346286_2605976; getBlockSize()=31984178; corrupt=false; offset=805306368; locs=[DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK], DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK]]}]
+  lastLocatedBlock=LocatedBlock{BP-26004660-127.0.0.1-1467118838934:blk_1076346286_2605976; getBlockSize()=31984178; corrupt=false; offset=805306368; locs=[DatanodeInfoWithStorage[192.168.4.246:50010,DS-dc09ed7e-92af-4629-b4e2-34e2442a4388,DISK], DatanodeInfoWithStorage[192.168.4.248:50010,DS-04b8958e-82b7-4c5c-b20a-13af323f5004,DISK]]}
+  isLastBlockComplete=true}
+2017-01-18 11:23:37 DEBUG DFSClient:1055 - Connecting to datanode 192.168.4.248:50010
+2017-01-18 11:23:37 DEBUG Client:1037 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez sending #1
+2017-01-18 11:23:37 DEBUG Client:1094 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez got value #1
+2017-01-18 11:23:37 DEBUG ProtobufRpcEngine:250 - Call: getServerDefaults took 1ms
+2017-01-18 11:23:47 DEBUG Client:1197 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez: closed
+2017-01-18 11:23:47 DEBUG Client:992 - IPC Client (1973233403) connection to /192.168.4.245:8020 from ignacio.g.fernandez: stopped, remaining connections 0
+2017-01-18 11:23:47 DEBUG Client:97 - stopping client from cache: org.apache.hadoop.ipc.Client@2a7f1f10
+2017-01-18 11:23:47 DEBUG Client:103 - removing client from cache: org.apache.hadoop.ipc.Client@2a7f1f10
+2017-01-18 11:23:47 DEBUG Client:110 - stopping actual client because no more references remain: org.apache.hadoop.ipc.Client@2a7f1f10
+2017-01-18 11:23:47 DEBUG Client:1247 - Stopping client
