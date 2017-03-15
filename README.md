@@ -59,7 +59,7 @@ Docker Proteus Environment have one container based on the lightweight image of 
 * Kafka
 * Zookeeper
 
-To use this Proteus environment it is only neccesary to put the Proteus dataset in the correct folder, ./Dataset in this case, 
+To use this Proteus environment it is only neccesary to put the Proteus dataset in the correct folder, ./proteus-data, and the desired fold, coiltimeseries_data o hsm_data, 
 and respect the name for the CSV, it is have to been called PROTEUS.csv. Respecting the upper and lower case.
 
 Once the PROTEUS.csv it is on place, we can start the Proteus environment. Once it finish the set up, we can start to see all the 
