@@ -39,17 +39,11 @@ RUN echo 'alias jps='/usr/lib/jvm/java-$JAVA_VERSION-openjdk/bin/jps'' >> ~/.bas
 
 COPY supervisor-kafka.ini /etc/supervisor.d/
 
-## Git Repo
-
-# DEV BRANCH
-
-RUN git clone -b development-docker --single-branch https://github.com/proteus-h2020/KafkaConsumerProducer.git
-
-# git clone https://github.com/0xNacho/KafkaConsumerProducer.git
-
 ## Maven Build
 
-RUN cd KafkaConsumerProducer && pwd && mvn clean package
+RUN cd /opt/kafka-producer/
+RUN pwd
+RUN mvn clean package
 
 # RUN nohup java -cp /opt/KafkaConsumerProducer/KafkaProducer/target/KafkaProducer-0.0.1-SNAPSHOT.jar 
 
