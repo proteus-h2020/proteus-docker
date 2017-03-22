@@ -26,8 +26,7 @@ public class ProducerLogic {
     private static ObjectMapper mapper = new ObjectMapper();
     String timeStampInicioBobina;
     String timeStampFinBobina;
-    Random randomize;
-
+    boolean firstIteration = true;
 
 
     ProducerLogic(){}
@@ -36,14 +35,17 @@ public class ProducerLogic {
 
     public void buffer(Coil coil, Producer<String,String> producer, String topic, Double COIL_SPEED) throws InterruptedException {
 
+        System.out.println("Buffer: ");
+
         this.COIL_SPEED = COIL_SPEED;
         setTopic(topic);
         this.productor = producer;
         Integer idcoil = coil.getID();
 
-        Double valor = coil.getPositionX();
-        //System.out.println("Valor: " + valor);
-        //System.out.println("Valor Gaussiano: " + randomize.nextGaussian());
+        if ( firstIteration = true ){
+            firstIteration = false;
+            identificadorbobina = idcoil;
+        }
 
 
         if ( identificadorbobina.equals(idcoil)){
@@ -83,6 +85,7 @@ public class ProducerLogic {
     }
 
     public void publishCoilsKafka() throws InterruptedException {
+
 
         contadorestimestamp = 0;
         int i = 0;

@@ -74,12 +74,9 @@ public class ProteusKafkaProducer {
 				// La primera línea del CSV es una cabecera
 				String line = br.readLine();
 
-				System.out.println("LINEA: " + line);
-
 				// Primera linea a procesar
 				line = br.readLine();
 				while (line != null) {
-
 					String [] mensaje = line.split(",");
 					Coil coil = new Coil().generateCoilObject(mensaje);
 					logic.buffer(coil, producer, PROTEUS_KAFKA_TOPIC, COIL_SPEED);
