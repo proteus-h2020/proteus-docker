@@ -35,7 +35,7 @@ public class ProducerLogic {
 
     public void buffer(Coil coil, Producer<String,String> producer, String topic, Double COIL_SPEED) throws InterruptedException {
 
-        System.out.println("Buffer: ");
+
 
         this.COIL_SPEED = COIL_SPEED;
         setTopic(topic);
@@ -51,7 +51,11 @@ public class ProducerLogic {
         if ( identificadorbobina.equals(idcoil)){
             generarBufferBobinas(coil);
         } else {
-            if ( !coilsbuffer.isEmpty()) imprimirBufferBobinas();
+            if ( !coilsbuffer.isEmpty()) {
+                System.out.println("Voy a imprimir la bobina");
+                Thread.sleep(100000);
+                imprimirBufferBobinas();
+            }
             identificadorbobina = idcoil;
         }
     }
@@ -59,9 +63,12 @@ public class ProducerLogic {
     public void generarBufferBobinas(Coil coil){
         coilsbuffer.add(coil);
         xpositionsbuffer.add(coil.getPositionX());
+
     }
 
     public void imprimirBufferBobinas() throws InterruptedException {
+
+        System.out.println("Imprimir bobinas");
         getProductionTimeDelays();
         publishCoilsKafka();
         this.tiempogeneracionbobina = 0.0;
@@ -85,6 +92,8 @@ public class ProducerLogic {
     }
 
     public void publishCoilsKafka() throws InterruptedException {
+
+        System.out.println("publishCoil");
 
 
         contadorestimestamp = 0;
@@ -130,6 +139,8 @@ public class ProducerLogic {
 
 
     }
+
+
 
     public void printInfo(){
         System.out.println("Variables globales");

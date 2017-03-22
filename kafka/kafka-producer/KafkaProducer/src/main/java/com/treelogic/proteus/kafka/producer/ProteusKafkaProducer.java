@@ -83,6 +83,7 @@ public class ProteusKafkaProducer {
 					line = br.readLine();
 
 				}
+				logic.imprimirBufferBobinas();
 			} catch (Exception e) {
 				logger.error("Error in the Proteus Kafka producer", e);
 			}
