@@ -9,7 +9,6 @@ services:
     domainname: proteus
     volumes:
       - ./proteus-data/coiltimeseries_data:/opt/proteus-dataset
-      - ./kafka-producer:/opt/kafka-producer
     networks: 
       - proteus
 

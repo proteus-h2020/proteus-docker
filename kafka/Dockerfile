@@ -26,7 +26,7 @@ RUN wget http://ftp.cixug.es/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache
 
 # Kafka
 
-RUN mkdir -p /opt/kafka && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ && rm -r /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && mkdir -p /var/log/kafka/topic/ && mkdir -p /var/log/kafka/producer/
+RUN mkdir -p /opt/kafka && mkdir -p /opt/producer/ && wget http://apache.uvigo.es/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && tar -zxvf kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip 1 -C /opt/kafka/ && rm -r /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz && mkdir -p /var/log/kafka/topic/ && mkdir -p /var/log/kafka/producer/
 
 COPY server.properties /opt/kafka/config/server.properties
 
@@ -41,16 +41,18 @@ COPY supervisor-kafka.ini /etc/supervisor.d/
 
 ## Maven Build
 
-RUN cd /opt/kafka-producer/
-RUN pwd
-RUN mvn clean package
 
-# RUN nohup java -cp /opt/KafkaConsumerProducer/KafkaProducer/target/KafkaProducer-0.0.1-SNAPSHOT.jar 
+COPY /kafka-producer/ /opt/producer/
+RUN cd /opt/producer/ && mvn clean package
+
+# RUN nohup java -jar /opt/producer/KafkaProducer/target/KafkaProducer-0.0.1-SNAPSHOT.jar &
 
 ## Entrypoint
 
+COPY launcher.sh /opt/kafka/launcher.sh
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN chmod a+x /opt/entrypoint.sh
+RUN chmod a+x /opt/kafka/launcher.sh
 
 ## Workdir
 
