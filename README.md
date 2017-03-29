@@ -55,7 +55,7 @@ Proteus Environment menu
 
 Architecture
 -----
-Docker Proteus Environment has one container based on the lightweight image of Alpine Linux for each service:
+The PROTEUS virtual environment is based on te Alpine Linux OS (one instance per container). Each of these containers consists of two main services:
 
 * Kafka
 * Zookeeper
