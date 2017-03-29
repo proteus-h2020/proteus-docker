@@ -1,24 +1,45 @@
 version: '2'
 
 services:
-
-  kafka:
-    image: treelogic:kafka
-    hostname: kafka
-    container_name: kafka
+  namenode:
+    image: treelogic:namenode
+    hostname: namenode
+    container_name: namenode
     domainname: proteus
+    networks:
+      - proteus
     volumes:
-      - ./proteus-data/coiltimeseries_data:/opt/proteus-dataset
-    networks: 
-      - proteus
+      -  ./proteus-data/:/opt/proteus-data/
+    env_file:
+      - ./namenode/namenode-conf/namenode.env
 
-  zookeeper:
-    image: treelogic:zookeeper
-    hostname: zookeeper
-    container_name: zookeeper
+  nodemanager:
+    image: treelogic:nodemanager
+    hostname: nodemanager
     domainname: proteus
     networks: 
       - proteus
+    env_file:
+      - ./nodemanager/nodemanager-conf/nodemanager.env
+ 
+  resourcemanager:
+    image: treelogic:resourcemanager
+    hostname: resourcemanager
+    container_name: resourcemanager
+    domainname: proteus
+    networks: 
+      - proteus
+    env_file:
+      - ./resourcemanager/resourcemanager-conf/resourcemanager.env
+
+  datanode:
+    image: treelogic:datanode
+    hostname: datanode
+    domainname: proteus
+    networks:
+      - proteus
+    env_file:
+      - ./datanode/datanode-conf/datanode.env
 
   logs:
     image: treelogic:logs
@@ -33,10 +54,50 @@ services:
     hostname: data
     container_name: data
     domainname: proteus
-    networks:
+    networks: 
       - proteus
     volumes:
-      - ./Dataset/:/proteus-coiltimeseries/
+      - /home/pablo.mesa/Escritorio/ProteusDocker/DataSet/coiltimeseries/:/proteus-coiltimeseries/
+
+  kafka:
+    image: treelogic:kafka
+    hostname: kafka
+    container_name: kafka
+    domainname: proteus
+    networks: 
+      - proteus
+
+  zookeeper:
+    image: treelogic:zookeeper
+    hostname: zookeeper
+    container_name: zookeeper
+    domainname: proteus
+    networks: 
+      - proteus
+ 
+  flink-jobmanager:
+    image: treelogic:flink
+    container_name: flink-jobmanager
+    domainname: proteus
+    networks: 
+      - proteus
+    expose:
+      - "6123"
+    ports:
+      - "48081:8081"
+
+  flink-taskmanager:
+    image: treelogic:flink
+    domainname: proteus
+    networks:
+      - proteus
+    expose:
+      - "6121"
+      - "6122"
+    depends_on:
+      - flink-jobmanager
+    links:
+      - "flink-jobmanager:flink-jobmanager"
 
 networks:
   proteus:
