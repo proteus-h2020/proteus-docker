@@ -75,29 +75,19 @@ services:
     networks: 
       - proteus
  
-  flink-jobmanager:
+  flink:
     image: treelogic:flink
-    container_name: flink-jobmanager
+    container_name: flink
     domainname: proteus
     networks: 
       - proteus
     expose:
       - "6123"
+      - "6122"
+      - "6121"
     ports:
       - "48081:8081"
 
-  flink-taskmanager:
-    image: treelogic:flink
-    domainname: proteus
-    networks:
-      - proteus
-    expose:
-      - "6121"
-      - "6122"
-    depends_on:
-      - flink-jobmanager
-    links:
-      - "flink-jobmanager:flink-jobmanager"
 
 networks:
   proteus:

@@ -25,15 +25,16 @@ sudo docker build -t treelogic:nodemanager ./nodemanager/.
 sudo docker build -t treelogic:datanode ./datanode/.
 sudo docker build -t treelogic:zookeeper ./zookeeper/.
 sudo docker build -t treelogic:kafka ./kafka/.
-
+sudo docker build -t treelogic:flink ./flink/.
 
 echo "Docker Compose"
 
 ### Build
 
-sudo docker-compose scale nodemanager=3
-sudo docker-compose scale datanode=3
+sudo docker-compose scale nodemanager=1
+sudo docker-compose scale datanode=1
 sudo docker-compose up -d resourcemanager
 sudo docker-compose up -d namenode
 sudo docker-compose up -d zookeeper
 sudo docker-compose up -d kafka
+sudo docker-compose up -d flink
