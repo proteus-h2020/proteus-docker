@@ -14,6 +14,13 @@ if [ "$(sudo docker network inspect $NETWORK -d --format '{{ .Name }}')" == "$NE
 else echo "Proteus Network don´t exist. Creating...  "$(sudo docker network create proteus)
 fi
 
+### Repositories
+
+sudo rm -r ./kafka/kafka-producer
+sudo git clone https://github.com/proteus-h2020/proteus-producer.git -b development ./kafka/kafka-producer
+
+sleep 5s
+
 ## Build Images
 echo "Build"
 
@@ -34,7 +41,15 @@ echo "Docker Compose"
 sudo docker-compose scale nodemanager=1
 sudo docker-compose scale datanode=1
 sudo docker-compose up -d resourcemanager
-sudo docker-compose up -d namenode
+sudo docker-compose up -d namenode 
 sudo docker-compose up -d zookeeper
 sudo docker-compose up -d kafka
 sudo docker-compose up -d flink
+
+### Load Data
+
+sleep 5s
+
+sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -mkdir /proteus"
+sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -mkdir /proteus/coiltimeseries"
+sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -copyFromLocal /opt/proteus-data/coiltimeseries_data/PROTEUS.csv /proteus/coiltimeseries"

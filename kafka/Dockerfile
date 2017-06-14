@@ -43,9 +43,9 @@ COPY supervisor-kafka.ini /etc/supervisor.d/
 
 
 COPY /kafka-producer/ /opt/producer/
-RUN cd /opt/producer/ && mvn clean package
+COPY config.properties /opt/producer/src/main/resources/
+RUN cd /opt/producer/ && mvn compile 
 
-# RUN nohup java -jar /opt/producer/KafkaProducer/target/KafkaProducer-0.0.1-SNAPSHOT.jar &
 
 ## Entrypoint
 
