@@ -33,6 +33,7 @@ sudo docker build -t treelogic:datanode ./datanode/.
 sudo docker build -t treelogic:zookeeper ./zookeeper/.
 sudo docker build -t treelogic:kafka ./kafka/.
 sudo docker build -t treelogic:flink ./flink/.
+sudo docker build -t treelogic:proteus-dashboard ./dashboard/.
 
 echo "Docker Compose"
 
@@ -45,11 +46,17 @@ sudo docker-compose up -d namenode
 sudo docker-compose up -d zookeeper
 sudo docker-compose up -d kafka
 sudo docker-compose up -d flink
+sudo docker-compose up -d proteus-dashboard
 
 ### Load Data
 
 sleep 5s
 
+### Start Environment
+
 sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -mkdir /proteus"
 sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -mkdir /proteus/coiltimeseries"
-sudo docker exec namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -copyFromLocal /opt/proteus-data/coiltimeseries_data/PROTEUS.csv /proteus/coiltimeseries"
+sudo docker exec -d namenode /bin/bash -c "/opt/hadoop/bin/hdfs dfs -copyFromLocal /opt/proteus-data/coiltimeseries_data/PROTEUS.csv /proteus/coiltimeseries"
+sudo docker exec -d kafka /bin/bash -c "cd /opt/producer && nohup mvn exec:java &"
+sudo docker exec -d flink /bin/bash -c "./flink/proteus-engine/build-target/bin/flink run ./proteus-jobs/prous-job/target/proteus-job_2.10-0.1-SNAPSHOT.jar --state-backend memory --state-backend-mbsize 100 --flink-checkpoints-dir hdfs://namenode:8020/proteus/flink-checkpoints --bootstrap-server kafka:9092"
+

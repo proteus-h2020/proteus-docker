@@ -66,6 +66,10 @@ services:
     domainname: proteus
     networks: 
       - proteus
+    environment:
+     - KAFKA_ADVERTISED_HOST_NAME=kafka
+     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+     - KAFKA_ADVERTISED_PORT=9092
 
   zookeeper:
     image: treelogic:zookeeper
@@ -87,6 +91,15 @@ services:
       - "6121"
     ports:
       - "48081:8081"
+    links:
+      - kafka
+  proteus-dashboard:
+    image: treelogic:proteus-dashboard
+    container_name: proteus-dashboard
+    networks:
+      - proteus
+    expose:
+      - 8091
 
 
 networks:
