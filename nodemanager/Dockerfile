@@ -8,7 +8,7 @@ USER root
 ## Environment
 
 ENV JAVA_VERSION=1.8
-ENV HADOOP_VERSION=2.7.3
+ENV HADOOP_VERSION=2.8.1
 ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk/
 
 

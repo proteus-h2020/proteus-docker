@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-MAINTAINER Pablo Mesa <pablo.mesa@treelogic.com>
-
 ## Install
 
 RUN apk update && apk add --update --no-cache bash wget supervisor
